@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.litterservice.zone.mapper.AdmireMapper">
+    <insert id="addAdmire">
+        insert into admire_all(shareid,admireid)values(#{shareid},#{admireid})
+    </insert>
+    <update id="alterAdmireNum">
+        update share_all set admire=admire+1 where id = #{id}
+    </update>
+    <delete id="deleteAdmire">
+        delete from admire_all where shareid = #{shareid} and admireid = #{admireid}
+    </delete>
+    <update id="deleteAdmireNum">
+        update share_all set admire=admire-1 where id = #{id}
+    </update>
+    <select id="getSelfAdmire" resultType="com.litterservice.zone.bean.Admire">
+        select * from admire_all where admireid = #{userid}
+    </select>
+</mapper>

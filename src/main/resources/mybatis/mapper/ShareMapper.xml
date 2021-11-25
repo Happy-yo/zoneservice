@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.litterservice.zone.mapper.ShareMapper">
+    <insert id="addShare">
+        insert into share_all(title,admire,author,update_time,checkon)values(#{title},#{admire},#{author},#{update_time},#{checkon})
+    </insert>
+    <update id="addShareImage">
+        update share_all set image = #{imagepath} where id = #{id}
+    </update>
+    <update id="checkShare">
+        update share_all set checkon = #{checkon} where id = #{id}
+    </update>
+    <delete id="deleteShare">
+        delete from share_all where id = #{id} and author = #{author}
+    </delete>
+    <select id="getAllShare" resultType="com.litterservice.zone.bean.Share">
+        select * from share_all
+    </select>
+    <select id="getAllCheckedShare" resultType="java.util.Map">
+        select id,title,image,admire,username,update_time from share_all left outer join user on share_all.author = user.userid where checkon = 1
+    </select>
+    <select id="getSelfShare" resultType="java.util.Map">
+        select id,title,image,admire,username,update_time,checkon from share_all left outer join user on share_all.author = user.userid where author = #{userid}
+    </select>
+</mapper>

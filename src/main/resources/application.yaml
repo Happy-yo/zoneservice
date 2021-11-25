@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3306/zone"
+    username: root
+    password: 20000921
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+

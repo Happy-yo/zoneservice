@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.litterservice.zone.mapper.UserMapper">
+    <select id="getUser" resultType="com.litterservice.zone.bean.User">
+        select * from user where userid = #{userid} and password = #{password}
+    </select>
+    <insert id="addUser" >
+        insert into user(userid,password,username,admins)values(#{userid},#{password},#{username},#{admins})
+    </insert>
+    <select id="findUser" resultType="int">
+        select COUNT(*) from user where userid = #{userid}
+    </select>
+    <update id="alterPassword">
+        update user set password = #{newpassword} where userid = #{userid}
+    </update>
+    <select id="findUserAdmin" resultType="int">
+        select admins from user where userid = #{userid}
+    </select>
+    <update id="alterUser">
+        update user set password = #{password},username = #{username} ,admins = #{admins} where userid = #{userid}
+    </update>
+    <select id="getAllUser" resultType="com.litterservice.zone.bean.User">
+        select * from user
+    </select>
+    <delete id="deleteUser">
+        delete from user where userid = #{userid}
+    </delete>
+</mapper>
